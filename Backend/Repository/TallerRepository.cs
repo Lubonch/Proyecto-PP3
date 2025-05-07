@@ -16,14 +16,15 @@ namespace Backend.Repository
         }
         public List<Taller> GetAllTalleres()
         {
+
             IConfigurationRoot _configuration = new ConfigurationBuilder()
-           .SetBasePath("C:\\repos\\Proyecto-PP3\\Backend")
+           .SetBasePath(Directory.GetCurrentDirectory())
            .AddJsonFile("appsettings.json")
            .Build();
 
             string connString = _configuration.GetConnectionString("BackendDatabase")!;
             //var connString = app.Configuration.GetConnectionString("MangaCountDatabase");
-            var sql = "select * from talleres";
+            var sql = "select * from Taller";
             var products = new List<Taller>();
             using (var connection = new SqlConnection(connString))
             {
