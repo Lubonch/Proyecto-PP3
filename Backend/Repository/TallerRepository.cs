@@ -23,7 +23,7 @@ namespace Backend.Repository
 
             string connString = _configuration.GetConnectionString("BackendDatabase")!;
             //var connString = app.Configuration.GetConnectionString("MangaCountDatabase");
-            var sql = "select * from Taller";
+            var sql = "select * from talleres";
             var products = new List<Taller>();
             using (var connection = new SqlConnection(connString))
             {
