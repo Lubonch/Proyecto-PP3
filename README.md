@@ -2,13 +2,13 @@
 
 Sistema que permite la administracion e incripcion a talleres de educacion no formal.
 
-####Funcionalidades:
+#### Funcionalidades:
 * Registro/baja de usuario
 * Administracion de talleres
 * Consultar quienes se anotaron en el taller
 * Busqueda e inscripcion de talleres
 
-####Tecnologias usadas:
+#### Tecnologias usadas:
 * .Net
 * Dapper
 * SQL Server
@@ -17,7 +17,7 @@ Sistema que permite la administracion e incripcion a talleres de educacion no fo
 * Javascript
 	
 
-####Links:
+#### Links:
 * [Trello](https://github.com/Lubonch/SISTEC/tree/master/MISC/Casos%20de%20uso)<br />
 * [Google Drive](https://drive.google.com/drive/u/2/folders/1KTWUBxBDab8DgOMPcYLbdDXeOlQiSPcn)<br />
 * [Casos de uso](https://docs.google.com/spreadsheets/d/1FICz4Wo9YEjnefVPRzxz1ConMoYSeKuVIbZbGiedTx0/edit?gid=0#gid=0)<br />
