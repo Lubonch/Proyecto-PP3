@@ -24,11 +24,7 @@ namespace Backend.Controllers
             //mapper = MapperConfig.InitializeAutomapper();
         }
 
-        [AllowAnonymous]
         [HttpPost("login")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Boolean Login(LoginRequest request)
         {
             return _loginService.Login(request);
