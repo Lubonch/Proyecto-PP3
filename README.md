@@ -18,6 +18,13 @@ Sistema que permite la administracion e incripcion a talleres de educacion no fo
 	
 
 #### Links:
+* Lider: Lucas Bonch
+* Back End y Base de Datos: Lucas Bonch
+* Front End: Oriana Salazar	
+* QA: Antonella Avalos
+* Diseño y documentación: Matias Juarez
+
+#### Links:
 * [Trello](https://github.com/Lubonch/SISTEC/tree/master/MISC/Casos%20de%20uso)<br />
 * [Google Drive](https://drive.google.com/drive/u/2/folders/1KTWUBxBDab8DgOMPcYLbdDXeOlQiSPcn)<br />
 * [Casos de uso](https://docs.google.com/spreadsheets/d/1FICz4Wo9YEjnefVPRzxz1ConMoYSeKuVIbZbGiedTx0/edit?gid=0#gid=0)<br />
