@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #F0F4F3;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  background-color: #3ab397;
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #c0f0e5;
+}
+
+.logout-btn {
+  background-color: white;
+  color: #3ab397;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #e5f8f3;
+}
+
+/* CONTENIDO */
+.main-container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 40px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 40px;
+  color: #3ab397;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.courses {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.course {
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px 20px;
+  width: 280px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.course:hover {
+  transform: translateY(-5px);
+}
+
+.course ion-icon {
+  font-size: 40px;
+  color: #3ab397;
+  margin-bottom: 15px;
+}
+
+.course h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.course p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #3ab397;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.button:hover {
+  background-color: #329d84;
+}
+
+/* FOOTER */
+footer {
+  width: 100%;
+  background-color: #3ab397;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  margin-top: 40px;
+}
