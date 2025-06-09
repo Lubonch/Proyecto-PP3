@@ -29,5 +29,11 @@ namespace Backend.Controllers
         {
             return _loginService.Login(request);
         }
+
+        [HttpPost("registro")]
+        public Boolean Registro(Registro registroData)
+        {
+            return _loginService.Registro(registroData);
+        }
     }
 }
