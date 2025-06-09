@@ -27,5 +27,9 @@ namespace Backend.Service
             return _loginRepository.Login(request).ToList<User>().Any();
         }
 
+        public Boolean Registro(Registro registroData)
+        {
+            return _loginRepository.Registro(registroData);     
+        }
     }
 }
