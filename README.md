@@ -20,7 +20,7 @@ Sistema que permite la administracion e incripcion a talleres de educacion no fo
 #### Miembros:
 * Lider: Lucas Bonch
 * Back End y Base de Datos: Lucas Bonch
-* Front End: Oriana Salazar	
+* Front End: Oriana Salazar y Antonella Avalos	
 * QA: Antonella Avalos
 * Diseño y documentación: Matias Juarez
 
