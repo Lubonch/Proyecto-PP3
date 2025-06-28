@@ -3,6 +3,8 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Http;
 using Backend.Service.Contracts;
 using System;
+using Backend.Domain;
+using Backend.Entity;
 
 namespace Backend.Controllers
 {
@@ -27,5 +29,7 @@ namespace Backend.Controllers
             var test = _tallerService.GetAllTalleres().Cast<Domain.Taller>().ToArray();
             return test;
         }
+
+
     }
 }

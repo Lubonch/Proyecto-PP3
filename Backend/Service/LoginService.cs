@@ -1,5 +1,8 @@
-﻿using Backend.Controllers;
+﻿using AutoMapper;
+using Backend.Configs;
+using Backend.Controllers;
 using Backend.Domain;
+using Backend.Model;
 using Backend.Repository.Contracts;
 using Backend.Service.Contracts;
 using Microsoft.AspNetCore.Identity;
@@ -14,17 +17,19 @@ namespace Backend.Service
         private readonly ILogger<LoginService> _logger;
         private ILoginRepository _loginRepository;
         private readonly UserManager<User> _userManager;
-        //private Mapper mapper;
+        private Mapper mapper;
 
         public LoginService(ILogger<LoginService> logger, ILoginRepository loginRepository)
         {
             _logger = logger;
             _loginRepository = loginRepository;
-            //mapper = MapperConfig.InitializeAutomapper();
+            mapper = MapperConfig.InitializeAutomapper();
         }
-        public Boolean Login(LoginRequest request)
+        public UserModel Login(LoginRequest request)
         {
-            return _loginRepository.Login(request).ToList<User>().Any();
+            var loginUser = _loginRepository.Login(request).ToList<User>().FirstOrDefault();
+
+            return mapper.Map<UserModel>(loginUser);
         }
 
         public Boolean Registro(Registro registroData)

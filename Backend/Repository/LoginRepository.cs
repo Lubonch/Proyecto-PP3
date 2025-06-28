@@ -1,4 +1,5 @@
 ﻿using Backend.Repository.Contracts;
+using Microsoft.AspNetCore.Identity;
 using Backend.Service.Contracts;
 using Backend.Domain;
 using Dapper;
@@ -18,29 +19,36 @@ namespace Backend.Repository
         }
         public List<User> Login(LoginRequest request)
         {
-
             IConfigurationRoot _configuration = new ConfigurationBuilder()
            .SetBasePath(Directory.GetCurrentDirectory())
            .AddJsonFile("appsettings.json")
            .Build();
 
             string connString = _configuration.GetConnectionString("BackendDatabase")!;
-            //var connString = app.Configuration.GetConnectionString("MangaCountDatabase");
-            
+
+
             var parameters = new DynamicParameters();
             parameters.Add("@Usuario", request.Usuario, DbType.AnsiString, ParameterDirection.Input, request.Usuario.Length);
-            parameters.Add("@Password", request.Password, DbType.AnsiString, ParameterDirection.Input, request.Password.Length);
 
-
-            var sql = "select * from Alumno WHERE Usuario = @Usuario AND Password = @Password";
-            var products = new List<User>();
+            var sql = "select * from Alumno WHERE Usuario = @Usuario";
+            List<User> users;
             using (var connection = new SqlConnection(connString))
             {
                 connection.Open();
-                products = connection.Query<User>(sql,parameters).ToList();
+                users = connection.Query<User>(sql, parameters).ToList();
             }
 
-            return products;
+            if (users.Count == 0)
+                return new List<User>();
+
+            var user = users.First();
+            var passwordHasher = new PasswordHasher<string>();
+            var result = passwordHasher.VerifyHashedPassword(null, user.Password, request.Password);
+
+            if (result == PasswordVerificationResult.Success)
+                return new List<User> { user };
+
+            return new List<User>();
         }
 
         public Boolean Registro(Registro dataRegistro)
@@ -56,11 +64,14 @@ namespace Backend.Repository
             var administrador = false;
 
             string connString = _configuration.GetConnectionString("BackendDatabase")!;
-            //var connString = app.Configuration.GetConnectionString("MangaCountDatabase");
+
+            var passwordHasher = new PasswordHasher<string>();
+            string hashedPassword = passwordHasher.HashPassword(null, dataRegistro.Password);
+
 
             var parameters = new DynamicParameters();
             parameters.Add("@Usuario", dataRegistro.Usuario, DbType.AnsiString, ParameterDirection.Input, dataRegistro.Usuario.Length);
-            parameters.Add("@Password", dataRegistro.Password, DbType.AnsiString, ParameterDirection.Input, dataRegistro.Password.Length);
+            parameters.Add("@Password", hashedPassword, DbType.AnsiString, ParameterDirection.Input, hashedPassword.Length);
             parameters.Add("@Email", dataRegistro.Email, DbType.AnsiString, ParameterDirection.Input, dataRegistro.Email.Length);
             parameters.Add("@TallerId", null, DbType.AnsiString, ParameterDirection.Input);
             parameters.Add("@FechaRegistro", FechaRegistro, DbType.AnsiString, ParameterDirection.Input);
@@ -77,6 +88,34 @@ namespace Backend.Repository
             }
 
             return result.Any();
+        }
+
+        public void updateHash() 
+        {
+            IConfigurationRoot _configuration = new ConfigurationBuilder()
+           .SetBasePath(Directory.GetCurrentDirectory())
+           .AddJsonFile("appsettings.json")
+           .Build();
+
+            string connString = _configuration.GetConnectionString("BackendDatabase")!;
+
+            var passwordHasher = new PasswordHasher<string>();
+
+            using (var connection = new SqlConnection(connString))
+            {
+                connection.Open();
+                var users = connection.Query<(int Id, string Password)>("SELECT Id, Password FROM Alumno").ToList();
+
+                foreach (var user in users)
+                {
+                    // Skip if already hashed (optional: check hash format)
+                    if (user.Password.StartsWith("AQAAAA")) continue;
+
+                    string hashed = passwordHasher.HashPassword(null, user.Password);
+                    connection.Execute("UPDATE Alumno SET Password = @Password WHERE Id = @Id",
+                        new { Password = hashed, Id = user.Id });
+                }
+            }
         }
     }
 }
