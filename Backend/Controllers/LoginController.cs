@@ -6,6 +6,7 @@ using System;
 using Backend.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Service;
+using Backend.Model;
 
 namespace Backend.Controllers
 {
@@ -25,7 +26,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost("login")]
-        public Boolean Login(LoginRequest request)
+        public UserModel Login(LoginRequest request)
         {
             return _loginService.Login(request);
         }

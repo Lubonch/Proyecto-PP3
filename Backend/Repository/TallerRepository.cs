@@ -5,6 +5,7 @@ using Dapper;
 using System.Net;
 using System;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace Backend.Repository
 {
@@ -24,7 +25,7 @@ namespace Backend.Repository
 
             string connString = _configuration.GetConnectionString("BackendDatabase")!;
             //var connString = app.Configuration.GetConnectionString("MangaCountDatabase");
-            var sql = "select * from Taller";
+            var sql = "select * from Taller where Activo = 1";
             var products = new List<Taller>();
             using (var connection = new SqlConnection(connString))
             {
@@ -34,5 +35,6 @@ namespace Backend.Repository
 
             return products;
         }
+
     }
 }

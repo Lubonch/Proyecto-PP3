@@ -1,6 +1,23 @@
 using Backend.Configs;
+using log4net;
+using log4net.Config;
+using System.Reflection;
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+log4net.GlobalContext.Properties["ProcessName"] = builder.Configuration["Logging:LogInstance"] ?? "DefaultInstance";
+
+// Configure log4net
+var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+
+
+
+// Set global process name (can be changed per class if needed)
+log4net.GlobalContext.Properties["ProcessName"] = builder.Configuration["Logging:LogInstance"] ?? "DefaultInstance";
 
 // Add services to the container.
 builder.Services.AddControllers();

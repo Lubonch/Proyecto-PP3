@@ -1,10 +1,11 @@
 ﻿using Backend.Domain;
+using Backend.Model;
 
 namespace Backend.Service.Contracts
 {
     public interface ILoginService
     {
-        public Boolean Login(LoginRequest request);
+        public UserModel Login(LoginRequest request);
         public Boolean Registro(Registro registroData);
     }
 }

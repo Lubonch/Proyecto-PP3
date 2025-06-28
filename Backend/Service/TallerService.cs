@@ -22,5 +22,7 @@ namespace Backend.Service
         {
             return _tallerRepository.GetAllTalleres();
         }
+
+
     }
 }

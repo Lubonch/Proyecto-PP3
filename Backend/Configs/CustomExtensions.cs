@@ -12,11 +12,13 @@ namespace Backend.Configs
         {
             services.AddScoped<ITallerService, TallerService>();
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IAlumnoService, AlumnoService>();
         }
         public static void AddInjectionRepositories(IServiceCollection services)
         {
             services.AddScoped<ITallerRepository, TallerRepository>();
             services.AddScoped<ILoginRepository, LoginRepository>();
+            services.AddScoped<IAlumnoRepository, AlumnoRepository>();
         }
     }
 }
