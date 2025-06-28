@@ -34,16 +34,20 @@ class LoginClass {
 
         try {
             const response = await fetch("http://localhost:5101/Login/login", requestOptions);
-            const result = await response.text();
+            const result = await response.json();
+
             console.log(result);
 
-            if (result === "true") {
+            if (result && result.id && result.activo) {
+                sessionStorage.setItem("userData", JSON.stringify(result));
+
                 window.location.href = "principal/principal.html";
             } else {
                 alert("Usuario o contraseña incorrectos.");
             }
         } catch (error) {
             console.error("Error en el login:", error);
+            alert("Ocurrió un error al intentar iniciar sesión.");
         }
     }
 }
